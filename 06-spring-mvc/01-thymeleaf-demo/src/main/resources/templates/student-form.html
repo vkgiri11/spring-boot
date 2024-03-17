@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+</head>
+<body>
+
+<h3>Student Registration Form</h3>
+
+<form th:action="@{/processStudentForm}" th:object="${student}" method="post">
+
+    <!--    *{...} is the shortcut syntax for -> ${student.firstName} -->
+    First Name: <input type="text" th:field="*{firstName}"/>
+
+    <br/>
+
+    <!--    when the model is loaded Spring MVC will read student from the model and call: student.getLastName-->
+    <!--    when the form is submitted Spring MVC will create a new student instance and add to the model then call:
+    student.setLastName -->
+
+    <!--    lastName changes to -> getLastName-->
+    Last Name: <input type="text" th:field="*{lastName}"/>
+
+    <br/>
+
+    Country:
+    <select th:field="*{country}">
+        <!--        loop over the countries attribute-->
+        <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}"></option>
+
+    </select>
+
+    <br/>
+
+    Favorite Programming Language:
+    <input type="radio" th:field="*{favLang}" th:each="tempLang : ${favProgLangs}" th:value="${tempLang}"
+           th:text="${tempLang}"></input>
+
+    <br/>
+
+    Favorite Operating Systems:
+    <input type="checkbox" th:field="*{favSys}" th:each="tempSys : ${operatingSystems}" th:value="${tempSys}"
+           th:text="${tempSys}"></input>
+
+    <br/>
+
+    <input type="submit" value="Submit"/>
+</form>
+
+</body>
+</html>

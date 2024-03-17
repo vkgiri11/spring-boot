@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Login Page</title>
+
+    <style>
+        .failed {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h3>My Custom Login Page</h3>
+
+<!-- this is the endpoint [authenticateTheUser] where the data of login form will be processed -->
+<form action="#" th:action="@{authenticateTheUser}" method="post">
+
+    <!--    if the login fails, spring will redirect back to the login page, and will attach '?error' parameter in the
+    url-->
+    <div th:if="${param.error}">  <!-- if the url has error param, show the text -->
+        <i class="failed">Sorry! You entered invalid username/password</i>
+    </div>
+
+
+    <!--    the name of both these fields have to be 'username' and 'password' only-->
+    <!--since spring will look for these particular values [ userName, passWord -> this wont work] -->
+
+    <p>User name: <input type="text" name="username"/></p>
+
+    <p>Password: <input type="password" name="password"/></p>
+
+    <input type="submit" value="Login">
+
+</form>
+
+</body>
+</html>

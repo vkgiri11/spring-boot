@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>ThymeLeaf Demo</title>
+
+    <!--    @ -> reference context path of your app [app root]-->
+    <link rel="stylesheet" th:href="@{/css/demo.css}"/>
+</head>
+
+<body>
+
+<!--thymeleaf expression-->
+<!--<p th:text=" 'Time on the server is ' + ${theDate} " class="funny"/>-->
+
+Hello World of Spring!
+
+<br/>
+
+<!-- this is coming directly from the HTML form-->
+Student Name: <span th:text="${param.studentName}"></span>
+
+<br>
+
+The message: <span th:text="${message}"></span>
+
+</body>
+
+</html>

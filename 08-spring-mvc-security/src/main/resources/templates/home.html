@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>VK Company Home Page</title>
+</head>
+<body>
+
+<h2>VK Company Home Page</h2>
+<hr>
+
+<p> Welcome to the Company Home page!</p>
+
+<hr>
+
+<p>
+    User: <span sec:authentication="principal.username"></span>
+
+    <br><br>
+
+    <!--    by default spring security uses "ROLE_" prefix -->
+    Roles(s): <span sec:authentication="principal.authorities"></span>
+</p>
+
+<!--Only show the content if user has Manager role-->
+<div sec:authorize="hasRole('MANAGER')">
+    <p>
+        <a th:href="@{/leaders}">Leadership Meeting</a> (Only for Managers)
+    </p>
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+    <p>
+        <a th:href="@{/systems}">IT Systems Meeting</a> (Only for Admins)
+    </p>
+</div>
+
+<hr>
+
+<!--  by default logout is a POST method -->
+<!--logout removes the session cookies and redirects back to the login page with ?logout parameter attach in the url-->
+<form action="#" th:action="@{/logout}" method="post">
+
+    <input type="submit" value="Logout">
+
+</form>
+
+
+</body>
+</html>

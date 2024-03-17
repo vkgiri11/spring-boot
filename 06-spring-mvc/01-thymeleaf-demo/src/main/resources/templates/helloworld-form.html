@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World - Input Form</title>
+</head>
+<body>
+
+<form th:action="@{/processFormWithData2}" method="get">
+    <input type="text" name="studentName" placeholder="Enter your name"/>
+    <input type="submit"/>
+</form>
+
+</body>
+</html>
